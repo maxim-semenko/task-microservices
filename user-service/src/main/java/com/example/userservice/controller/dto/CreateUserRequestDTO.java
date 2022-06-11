@@ -6,6 +6,12 @@ import lombok.Setter;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+/**
+ * The CreateUserRequestDTO for request to create user.
+ *
+ * @author Maxim Semenko
+ * @version 0.0.1
+ */
 @Getter
 @Setter
 public class CreateUserRequestDTO {

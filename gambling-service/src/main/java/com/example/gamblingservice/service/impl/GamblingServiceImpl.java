@@ -6,6 +6,7 @@ import com.example.gamblingservice.service.GamblingService;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.UUID;
 
 @Service
 public class GamblingServiceImpl implements GamblingService {
@@ -13,8 +14,8 @@ public class GamblingServiceImpl implements GamblingService {
     @Override
     public CreatedBetResponseDTO createBet(CreateBetRequestDTO requestDTO) {
         CreatedBetResponseDTO createdBetResponseDTO = new CreatedBetResponseDTO();
-        createdBetResponseDTO.setBetId(requestDTO.getPreviousBetId() + 1);
-        createdBetResponseDTO.setPreviousBetId(requestDTO.getPreviousBetId());
+        createdBetResponseDTO.setBetUUID(UUID.randomUUID());
+        createdBetResponseDTO.setPreviousBetUUID(requestDTO.getPreviousBetUUID());
         createdBetResponseDTO.setUserId(requestDTO.getUserId());
         createdBetResponseDTO.setBetTimeStamp(new Date());
 

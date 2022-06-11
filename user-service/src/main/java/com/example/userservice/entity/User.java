@@ -14,6 +14,12 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+/**
+ * The entity User.
+ *
+ * @author Maxim Semenko
+ * @version 0.0.1
+ */
 @Entity
 @Table(name = "users")
 @Getter

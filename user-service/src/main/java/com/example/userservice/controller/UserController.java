@@ -14,23 +14,46 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 
+/**
+ * The User REST-controller.
+ *
+ * @author Maxim Semenko
+ * @version 0.0.1
+ */
 @RestController
 @RequestMapping("/api/v1/users")
 public class UserController {
 
     private final UserService userService;
 
+    /**
+     * The UserService for working with user entity {@link User}.
+     *
+     * @param userService the user service {@link UserService}
+     */
     public UserController(UserService userService) {
         this.userService = userService;
     }
 
+    /**
+     * Method that finds user by needed their id.
+     *
+     * @param id the user's id {@link Long}
+     * @return the response entity {@link ResponseEntity<User>}
+     */
     @GetMapping("/{id}")
     public ResponseEntity<User> findById(@PathVariable Long id) {
         return new ResponseEntity<>(userService.findById(id), HttpStatus.OK);
     }
 
+    /**
+     * Method that creates a new user.
+     *
+     * @param requestDTO user data {@link CreateUserRequestDTO}
+     * @return the response entity {@link ResponseEntity<User>}
+     */
     @PostMapping("/")
-    public ResponseEntity<User> findById(@RequestBody @Valid CreateUserRequestDTO requestDTO) {
+    public ResponseEntity<User> create(@RequestBody @Valid CreateUserRequestDTO requestDTO) {
         return new ResponseEntity<>(userService.create(requestDTO), HttpStatus.CREATED);
     }
 

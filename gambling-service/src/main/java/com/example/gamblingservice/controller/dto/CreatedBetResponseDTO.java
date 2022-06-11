@@ -5,14 +5,15 @@ import lombok.Setter;
 
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.UUID;
 
 @Getter
 @Setter
 public class CreatedBetResponseDTO {
     @NotNull
-    private Long betId;
+    private UUID betUUID;
     @NotNull
-    private Long previousBetId;
+    private UUID previousBetUUID;
     @NotNull
     private Long userId;
     @NotNull

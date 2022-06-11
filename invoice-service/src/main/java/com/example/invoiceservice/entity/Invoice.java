@@ -1,7 +1,9 @@
 package com.example.invoiceservice.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.Entity;
@@ -13,10 +15,18 @@ import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.UUID;
 
+/**
+ * The entity Invoice.
+ *
+ * @author Maxim Semenko
+ * @version 0.0.1
+ */
 @Entity
 @Table(name = "invoices")
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode
 public class Invoice {
     @Id

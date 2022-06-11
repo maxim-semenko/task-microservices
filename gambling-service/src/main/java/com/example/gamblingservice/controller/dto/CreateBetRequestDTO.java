@@ -3,6 +3,7 @@ package com.example.gamblingservice.controller.dto;
 import lombok.Getter;
 
 import javax.validation.constraints.NotNull;
+import java.util.UUID;
 
 @Getter
 public class CreateBetRequestDTO {
@@ -11,5 +12,5 @@ public class CreateBetRequestDTO {
     @NotNull
     private Double money;
     @NotNull
-    private Long previousBetId;
+    private UUID previousBetUUID;
 }

@@ -1,5 +1,6 @@
 package com.example.invoiceservice.controller;
 
+import com.example.invoiceservice.controller.dto.UserBalanceResponseDTO;
 import com.example.invoiceservice.controller.dto.WithdrawMoneyRequestDTO;
 import com.example.invoiceservice.entity.Invoice;
 import com.example.invoiceservice.service.InvoiceService;
@@ -15,22 +16,45 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 
+/**
+ * The Invoice REST-controller.
+ *
+ * @author Maxim Semenko
+ * @version 0.0.1
+ */
 @RestController
 @RequestMapping("/api/v1/invoices")
 public class InvoiceController {
 
     private final InvoiceService invoiceService;
 
+    /**
+     * The InvoiceService for working with invoice entity {@link Invoice}.
+     *
+     * @param invoiceService the invoice service {@link InvoiceService}
+     */
     @Autowired
     public InvoiceController(InvoiceService invoiceService) {
         this.invoiceService = invoiceService;
     }
 
+    /**
+     * Method that returns user's balance.
+     *
+     * @param userId the user's id {@link Long}
+     * @return the response entity {@link ResponseEntity<UserBalanceResponseDTO>}
+     */
     @GetMapping("/status/{userId}")
-    public ResponseEntity<Double> getUserBalance(@PathVariable Long userId) {
+    public ResponseEntity<UserBalanceResponseDTO> getUserBalance(@PathVariable Long userId) {
         return new ResponseEntity<>(invoiceService.getUserBalance(userId), HttpStatus.OK);
     }
 
+    /**
+     * Method that withdraws user's money.
+     *
+     * @param requestDTO the request dto {@link WithdrawMoneyRequestDTO}
+     * @return the response entity {@link ResponseEntity<Invoice>}
+     */
     @PostMapping("/withdraw")
     public ResponseEntity<Invoice> withdrawMoney(@RequestBody @Valid WithdrawMoneyRequestDTO requestDTO) {
         return new ResponseEntity<>(invoiceService.withdrawMoney(requestDTO), HttpStatus.OK);
