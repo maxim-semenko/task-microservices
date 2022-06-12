@@ -7,6 +7,12 @@ import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.UUID;
 
+/**
+ * The CreatedBetResponseDTO - response with created bet.
+ *
+ * @author Maxim Semenko
+ * @version 0.0.1
+ */
 @Getter
 @Setter
 public class CreatedBetResponseDTO {

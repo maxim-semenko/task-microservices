@@ -12,8 +12,20 @@ import com.example.invoiceservice.entity.Invoice;
  */
 public interface InvoiceService {
 
+    /**
+     * Method that gets user's balance by their id.
+     *
+     * @param userId the user's id {@link Long}
+     * @return the user's balance {@link Double}
+     */
     UserBalanceResponseDTO getUserBalance(Long userId);
 
+    /**
+     * Method that withdraws user's money.
+     *
+     * @param requestDTO the request dto {@link WithdrawMoneyRequestDTO}
+     * @return the response entity {@link Invoice}
+     */
     Invoice withdrawMoney(WithdrawMoneyRequestDTO requestDTO);
 
 }

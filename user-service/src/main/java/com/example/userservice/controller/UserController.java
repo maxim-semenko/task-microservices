@@ -24,10 +24,13 @@ import javax.validation.Valid;
 @RequestMapping("/api/v1/users")
 public class UserController {
 
+    /**
+     * The UserService for working with user entity {@link User}.
+     */
     private final UserService userService;
 
     /**
-     * The UserService for working with user entity {@link User}.
+     * Initial constructor.
      *
      * @param userService the user service {@link UserService}
      */

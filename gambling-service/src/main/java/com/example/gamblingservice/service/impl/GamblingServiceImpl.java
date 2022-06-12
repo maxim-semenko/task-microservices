@@ -8,9 +8,21 @@ import org.springframework.stereotype.Service;
 import java.util.Date;
 import java.util.UUID;
 
+/**
+ * The GamblingService implementation that realize UserService interface {@link GamblingService}.
+ *
+ * @author Maxim Semenko
+ * @version 0.0.1
+ */
 @Service
 public class GamblingServiceImpl implements GamblingService {
 
+    /**
+     * Method that creates bet.
+     *
+     * @param requestDTO the request dto {@link CreateBetRequestDTO}
+     * @return the created bet response dto {@link CreatedBetResponseDTO}
+     */
     @Override
     public CreatedBetResponseDTO createBet(CreateBetRequestDTO requestDTO) {
         CreatedBetResponseDTO createdBetResponseDTO = new CreatedBetResponseDTO();
