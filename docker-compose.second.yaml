@@ -1,0 +1,50 @@
+version: '3.3'
+services:
+
+  user:
+    image: 'my-app/user-service'
+    ports:
+      - '8080:8080'
+    container_name: 'user-service'
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    networks:
+      - spring
+      - postgres
+    depends_on:
+      - postgres
+      - rabbitmq
+
+  gambling:
+    image: 'my-app/gambling-service'
+    ports:
+      - '8081:8081'
+    container_name: 'gambling-service'
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    networks:
+      - spring
+      - postgres
+    depends_on:
+      - postgres
+      - rabbitmq
+
+  invoice:
+    image: 'my-app/invoice-service'
+    ports:
+      - '8082:8082'
+    container_name: 'invoice-service'
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    networks:
+      - spring
+      - postgres
+    depends_on:
+      - postgres
+      - rabbitmq
+
+networks:
+  postgres:
+    driver: bridge
+  spring:
+    driver: bridge
