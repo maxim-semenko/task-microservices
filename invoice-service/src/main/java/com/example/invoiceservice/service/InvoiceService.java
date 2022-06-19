@@ -3,7 +3,6 @@ package com.example.invoiceservice.service;
 import com.example.invoiceservice.controller.dto.CreatedBetResponseDTO;
 import com.example.invoiceservice.controller.dto.UserBalanceResponseDTO;
 import com.example.invoiceservice.controller.dto.WithdrawMoneyRequestDTO;
-import com.example.invoiceservice.entity.Invoice;
 
 /**
  * The Invoice service interface.
@@ -25,9 +24,8 @@ public interface InvoiceService {
      * Method that withdraws user's money.
      *
      * @param requestDTO the request dto {@link WithdrawMoneyRequestDTO}
-     * @return the response entity {@link Invoice}
      */
-    Invoice save(CreatedBetResponseDTO requestDTO);
+    void save(CreatedBetResponseDTO requestDTO);
 
     void withdrawMoney();
 }

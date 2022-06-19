@@ -50,18 +50,16 @@ public class InvoiceServiceImpl implements InvoiceService {
      * Method that saves created bet.
      *
      * @param requestDTO the request dto {@link CreatedBetResponseDTO}
-     * @return user's invoice {@link Invoice}
      */
     @Override
-    public Invoice save(CreatedBetResponseDTO requestDTO) {
+    public void save(CreatedBetResponseDTO requestDTO) {
         Invoice invoice = new Invoice();
         invoice.setBetUUID(requestDTO.getBetUUID());
         invoice.setPreviousBetUUID(requestDTO.getPreviousBetUUID());
         invoice.setUserId(requestDTO.getUserId());
         invoice.setAmountOfMoney(requestDTO.getAmountOfMoney());
         invoice.setBetTimeStamp(requestDTO.getBetTimeStamp());
-
-        return invoiceRepository.save(invoice);
+        invoiceRepository.save(invoice);
     }
 
     /**
@@ -69,7 +67,7 @@ public class InvoiceServiceImpl implements InvoiceService {
      */
     @Override
     public void withdrawMoney() {
-
+        // HOW TO DO THIS METHOD???
     }
 
 
