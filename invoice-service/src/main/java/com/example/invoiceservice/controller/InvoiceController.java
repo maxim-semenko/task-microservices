@@ -52,11 +52,10 @@ public class InvoiceController {
     /**
      * Method that withdraws user's money.
      *
-     * @param requestDTO the request dto {@link WithdrawMoneyRequestDTO}
-     * @return the response entity {@link ResponseEntity<Invoice>}
+     * @return the response entity
      */
     @PostMapping("/withdraw")
-    public ResponseEntity<Invoice> withdrawMoney(@RequestBody @Valid WithdrawMoneyRequestDTO requestDTO) {
-        return new ResponseEntity<>(invoiceService.withdrawMoney(requestDTO), HttpStatus.OK);
+    public ResponseEntity<Invoice> withdrawMoney() {
+        return new ResponseEntity<>(null, HttpStatus.OK);
     }
 }

@@ -1,7 +1,7 @@
 package com.example.invoiceservice.service.impl;
 
+import com.example.invoiceservice.controller.dto.CreatedBetResponseDTO;
 import com.example.invoiceservice.controller.dto.UserBalanceResponseDTO;
-import com.example.invoiceservice.controller.dto.WithdrawMoneyRequestDTO;
 import com.example.invoiceservice.entity.Invoice;
 import com.example.invoiceservice.exception.UserBalanceNotFoundException;
 import com.example.invoiceservice.repository.InvoiceRepository;
@@ -47,13 +47,13 @@ public class InvoiceServiceImpl implements InvoiceService {
     }
 
     /**
-     * Method that withdraws user's money.
+     * Method that saves created bet.
      *
-     * @param requestDTO the request dto {@link WithdrawMoneyRequestDTO}
-     * @return the response entity {@link Invoice}
+     * @param requestDTO the request dto {@link CreatedBetResponseDTO}
+     * @return user's invoice {@link Invoice}
      */
     @Override
-    public Invoice withdrawMoney(WithdrawMoneyRequestDTO requestDTO) {
+    public Invoice save(CreatedBetResponseDTO requestDTO) {
         Invoice invoice = new Invoice();
         invoice.setBetUUID(requestDTO.getBetUUID());
         invoice.setPreviousBetUUID(requestDTO.getPreviousBetUUID());
@@ -63,4 +63,14 @@ public class InvoiceServiceImpl implements InvoiceService {
 
         return invoiceRepository.save(invoice);
     }
+
+    /**
+     * Method that withdraws user's money.
+     */
+    @Override
+    public void withdrawMoney() {
+
+    }
+
+
 }

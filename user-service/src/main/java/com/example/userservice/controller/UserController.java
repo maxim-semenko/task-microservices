@@ -1,6 +1,6 @@
 package com.example.userservice.controller;
 
-import com.example.userservice.controller.dto.CreateUserRequestDTO;
+import com.example.userservice.dto.CreateUserRequestDTO;
 import com.example.userservice.entity.User;
 import com.example.userservice.service.UserService;
 import org.springframework.http.HttpStatus;

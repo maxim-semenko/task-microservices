@@ -1,7 +1,7 @@
 package com.example.gamblingservice.controller;
 
-import com.example.gamblingservice.controller.dto.CreateBetRequestDTO;
-import com.example.gamblingservice.controller.dto.CreatedBetResponseDTO;
+import com.example.gamblingservice.dto.CreateBetRequestDTO;
+import com.example.gamblingservice.dto.CreatedBetResponseDTO;
 import com.example.gamblingservice.service.GamblingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

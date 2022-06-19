@@ -1,7 +1,7 @@
 package com.example.gamblingservice.service;
 
-import com.example.gamblingservice.controller.dto.CreateBetRequestDTO;
-import com.example.gamblingservice.controller.dto.CreatedBetResponseDTO;
+import com.example.gamblingservice.dto.CreateBetRequestDTO;
+import com.example.gamblingservice.dto.CreatedBetResponseDTO;
 
 
 /**

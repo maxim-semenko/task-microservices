@@ -1,4 +1,4 @@
-package com.example.gamblingservice.controller.dto;
+package com.example.gamblingservice.dto;
 
 import lombok.Getter;
 

@@ -1,12 +1,18 @@
 package com.example.userservice.service.impl;
 
-import com.example.userservice.controller.dto.CreateUserRequestDTO;
+import com.example.userservice.config.MessagingConfig;
+import com.example.userservice.dto.CreateUserRequestDTO;
+import com.example.userservice.dto.RegisterBetRequestDTO;
 import com.example.userservice.entity.User;
 import com.example.userservice.exception.UserNotFoundException;
 import com.example.userservice.repository.UserRepository;
 import com.example.userservice.service.UserService;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Date;
+import java.util.UUID;
 
 /**
  * The UserService implementation that realize UserService interface {@link UserService}.
@@ -18,15 +24,19 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
+    private final RabbitTemplate rabbitTemplate;
 
     /**
      * Initial constructor.
      *
      * @param userRepository the user repository {@link UserRepository}
+     * @param rabbitTemplate the RabbitMQ
      */
     @Autowired
-    public UserServiceImpl(UserRepository userRepository) {
+    public UserServiceImpl(UserRepository userRepository,
+                           RabbitTemplate rabbitTemplate) {
         this.userRepository = userRepository;
+        this.rabbitTemplate = rabbitTemplate;
     }
 
     @Override
@@ -39,7 +49,18 @@ public class UserServiceImpl implements UserService {
     public User create(CreateUserRequestDTO requestDTO) {
         User user = new User();
         user.setTitle(requestDTO.getTitle());
+        user = userRepository.save(user);
 
-        return userRepository.save(user);
+        RegisterBetRequestDTO registerBetRequestDTO = new RegisterBetRequestDTO();
+        UUID uuid = UUID.randomUUID();
+        registerBetRequestDTO.setUserId(user.getId());
+        registerBetRequestDTO.setBetUUID(uuid);
+        registerBetRequestDTO.setPreviousBetUUID(uuid);
+        registerBetRequestDTO.setAmountOfMoney(20.0);
+        registerBetRequestDTO.setBetTimeStamp(new Date());
+
+        rabbitTemplate.convertAndSend(MessagingConfig.EXCHANGE, MessagingConfig.KEY, registerBetRequestDTO);
+
+        return user;
     }
 }

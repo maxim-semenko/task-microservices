@@ -1,8 +1,8 @@
 version: '3.3'
 services:
 
-  user:
-    image: 'my-app/user-service'
+  user-service:
+    image: 'my-app/user-service:latest'
     ports:
       - '8080:8080'
     container_name: 'user-service'
@@ -15,8 +15,8 @@ services:
       - postgres
       - rabbitmq
 
-  gambling:
-    image: 'my-app/gambling-service'
+  gambling-service:
+    image: 'my-app/gambling-service:latest'
     ports:
       - '8081:8081'
     container_name: 'gambling-service'
@@ -29,8 +29,8 @@ services:
       - postgres
       - rabbitmq
 
-  invoice:
-    image: 'my-app/invoice-service'
+  invoice-service:
+    image: 'my-app/invoice-service:latest'
     ports:
       - '8082:8082'
     container_name: 'invoice-service'
@@ -42,6 +42,16 @@ services:
     depends_on:
       - postgres
       - rabbitmq
+
+  gateway-service:
+    image: 'my-app/api-gateway-service:latest'
+    ports:
+      - '8083:8083'
+    container_name: 'gateway-service'
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    networks:
+      - spring
 
 networks:
   postgres:
