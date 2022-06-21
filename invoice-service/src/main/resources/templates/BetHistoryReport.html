@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <style>
+        h1 {
+            color: brown;
+        }
+        .quotation {
+            width: 100%;
+        }
+        .quotation, .quotation th, .quotation td {
+            border: 1px solid brown;
+            border-collapse: collapse;
+        }
+        .quotation th {
+            background-color: brown;
+            color: white;
+        }
+        @page {
+            margin-top: 20mm;
+            margin-left: 5mm;
+            margin-right: 5mm;
+            @bottom-right {
+                content: "Page " counter(page) " of " counter(pages);
+            }
+            @top-center {
+                content: element(header);
+            }
+        }
+        #header {position: running(header);}
+    </style>
+</head>
+<body>
+<div id="header">
+    <h1 th:text="'User: ' + ${name}"></h1>
+</div>
+<table class="quotation">
+    <tr>
+        <th>№</th>
+        <th>prevUUID</th>
+        <th>UUID</th>
+        <th>Time</th>
+        <th>Type</th>
+        <th>Money</th>
+    </tr>
+    <tr th:each="item, iterStat: ${invoiceList}">
+        <td th:text="${iterStat.index + 1}"></td>
+        <td th:text="${item.previousBetUUID}"></td>
+        <td th:text="${item.betUUID}"></td>
+        <td th:text="${item.betTimeStamp}"></td>
+        <td th:text="${item.type}"></td>
+        <td th:text="${item.amountOfMoney}"></td>
+    </tr>
+</table>
+</body>
+</html>

@@ -1,4 +1,4 @@
-package com.example.invoiceservice.controller.dto;
+package com.example.invoiceservice.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

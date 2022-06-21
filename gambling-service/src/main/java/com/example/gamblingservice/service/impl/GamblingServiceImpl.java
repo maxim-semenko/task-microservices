@@ -53,8 +53,9 @@ public class GamblingServiceImpl implements GamblingService {
         createdBetResponseDTO.setBetUUID(UUID.randomUUID());
         createdBetResponseDTO.setPreviousBetUUID(requestDTO.getPreviousBetUUID());
         createdBetResponseDTO.setUserId(requestDTO.getUserId());
+        createdBetResponseDTO.setAmountOfMoney(Math.random() > 0.51 ? (betMoney * 2) : -betMoney);
         createdBetResponseDTO.setBetTimeStamp(new Date());
-        createdBetResponseDTO.setAmountOfMoney(Math.random() > 0.51 ? betMoney + (betMoney * 2) : 0.0);
+        createdBetResponseDTO.setBetType("GAME_BET");
 
         rabbitTemplate.convertAndSend(MessagingConfig.EXCHANGE, MessagingConfig.KEY, createdBetResponseDTO);
 

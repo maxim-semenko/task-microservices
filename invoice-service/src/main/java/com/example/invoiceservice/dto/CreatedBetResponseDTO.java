@@ -1,4 +1,4 @@
-package com.example.invoiceservice.controller.dto;
+package com.example.invoiceservice.dto;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -28,4 +28,6 @@ public class CreatedBetResponseDTO {
     private Double amountOfMoney;
     @NotNull
     private Date betTimeStamp;
+    @NotNull
+    private String betType;
 }

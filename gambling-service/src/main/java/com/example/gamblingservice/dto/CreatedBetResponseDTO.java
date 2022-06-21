@@ -26,4 +26,6 @@ public class CreatedBetResponseDTO {
     private Double amountOfMoney;
     @NotNull
     private Date betTimeStamp;
+    @NotNull
+    private String betType;
 }

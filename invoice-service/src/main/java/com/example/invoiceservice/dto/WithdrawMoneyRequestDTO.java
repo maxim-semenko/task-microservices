@@ -1,11 +1,9 @@
-package com.example.invoiceservice.controller.dto;
+package com.example.invoiceservice.dto;
 
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.validation.constraints.NotNull;
-import java.util.Date;
-import java.util.UUID;
 
 /**
  * The WithdrawMoneyRequestDTO.
@@ -17,13 +15,7 @@ import java.util.UUID;
 @Setter
 public class WithdrawMoneyRequestDTO {
     @NotNull
-    private UUID betUUID;
-    @NotNull
-    private UUID previousBetUUID;
-    @NotNull
     private Long userId;
     @NotNull
     private Double amountOfMoney;
-    @NotNull
-    private Date betTimeStamp;
 }

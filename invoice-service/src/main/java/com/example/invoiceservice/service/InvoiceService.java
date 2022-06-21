@@ -1,8 +1,9 @@
 package com.example.invoiceservice.service;
 
-import com.example.invoiceservice.controller.dto.CreatedBetResponseDTO;
-import com.example.invoiceservice.controller.dto.UserBalanceResponseDTO;
-import com.example.invoiceservice.controller.dto.WithdrawMoneyRequestDTO;
+import com.example.invoiceservice.dto.CreatedBetResponseDTO;
+import com.example.invoiceservice.dto.UserBalanceResponseDTO;
+import com.example.invoiceservice.dto.WithdrawMoneyRequestDTO;
+import com.example.invoiceservice.entity.Invoice;
 
 /**
  * The Invoice service interface.
@@ -18,7 +19,7 @@ public interface InvoiceService {
      * @param userId the user's id {@link Long}
      * @return the user's balance {@link Double}
      */
-    UserBalanceResponseDTO getUserBalance(Long userId);
+    UserBalanceResponseDTO getUserBalanceByUserId(Long userId);
 
     /**
      * Method that withdraws user's money.
@@ -27,5 +28,12 @@ public interface InvoiceService {
      */
     void save(CreatedBetResponseDTO requestDTO);
 
-    void withdrawMoney();
+    /**
+     * Method that withdraws user's money.
+     *
+     * @param requestDTO the request dto {@link WithdrawMoneyRequestDTO}
+     * @return the withdrawal invoice {@link Invoice}
+     */
+    Invoice withdrawMoney(WithdrawMoneyRequestDTO requestDTO);
+
 }

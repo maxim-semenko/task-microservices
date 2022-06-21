@@ -1,7 +1,7 @@
 package com.example.invoiceservice.listener;
 
 import com.example.invoiceservice.config.MessagingConfig;
-import com.example.invoiceservice.controller.dto.CreatedBetResponseDTO;
+import com.example.invoiceservice.dto.CreatedBetResponseDTO;
 import com.example.invoiceservice.service.InvoiceService;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;

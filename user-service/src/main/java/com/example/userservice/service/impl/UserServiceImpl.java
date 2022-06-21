@@ -58,6 +58,7 @@ public class UserServiceImpl implements UserService {
         registerBetRequestDTO.setPreviousBetUUID(uuid);
         registerBetRequestDTO.setAmountOfMoney(20.0);
         registerBetRequestDTO.setBetTimeStamp(new Date());
+        registerBetRequestDTO.setBetType("CELEBRITY_BET");
 
         rabbitTemplate.convertAndSend(MessagingConfig.EXCHANGE, MessagingConfig.KEY, registerBetRequestDTO);
 
