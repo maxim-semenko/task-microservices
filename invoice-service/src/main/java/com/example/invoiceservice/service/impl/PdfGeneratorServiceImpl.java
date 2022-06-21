@@ -1,9 +1,9 @@
 package com.example.invoiceservice.service.impl;
 
+import com.example.invoiceservice.service.PdfGeneratorService;
 import com.lowagie.text.DocumentException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
@@ -14,7 +14,7 @@ import java.util.Map;
 
 @Service
 @Slf4j
-public class PdfGeneratorServiceImpl {
+public class PdfGeneratorServiceImpl implements PdfGeneratorService {
 
     private final TemplateEngine templateEngine;
 
@@ -23,6 +23,7 @@ public class PdfGeneratorServiceImpl {
         this.templateEngine = templateEngine;
     }
 
+    @Override
     public byte[] generatePdfFile(String templateName, Map<String, Object> data) {
         Context context = new Context();
         context.setVariables(data);

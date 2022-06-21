@@ -5,17 +5,21 @@
         h1 {
             color: brown;
         }
-        .quotation {
+
+        .list {
             width: 100%;
         }
-        .quotation, .quotation th, .quotation td {
+
+        .list, .list th, .list td {
             border: 1px solid brown;
             border-collapse: collapse;
         }
-        .quotation th {
+
+        .list th {
             background-color: brown;
             color: white;
         }
+
         @page {
             margin-top: 20mm;
             margin-left: 5mm;
@@ -27,14 +31,17 @@
                 content: element(header);
             }
         }
-        #header {position: running(header);}
+
+        #header {
+            position: running(header);
+        }
     </style>
 </head>
 <body>
 <div id="header">
     <h1 th:text="'User: ' + ${name}"></h1>
 </div>
-<table class="quotation">
+<table class="list">
     <tr>
         <th>№</th>
         <th>prevUUID</th>

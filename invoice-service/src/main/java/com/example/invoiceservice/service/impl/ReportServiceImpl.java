@@ -35,6 +35,12 @@ public class ReportServiceImpl implements ReportService {
         this.invoiceRepository = invoiceRepository;
     }
 
+    /**
+     * Method that return bet history report by userId.
+     *
+     * @param userId needed user's id.
+     * @return the response of file's bytes
+     */
     @Override
     public ResponseEntity<byte[]> generateBetHistoryPdfReportByUserId(Long userId) {
         UserResponseDTO userResponseDTO;
@@ -50,6 +56,7 @@ public class ReportServiceImpl implements ReportService {
         data.put("invoiceList", invoicesHistory);
 
         byte[] fileBytes = pdfGeneratorService.generatePdfFile("BetHistoryReport", data);
+
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_PDF);
         headers.setContentDispositionFormData("pdf-report", "pdf-report");
