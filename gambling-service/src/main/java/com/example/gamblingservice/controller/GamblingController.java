@@ -3,7 +3,7 @@ package com.example.gamblingservice.controller;
 import com.example.gamblingservice.dto.CreateBetRequestDTO;
 import com.example.gamblingservice.dto.CreatedBetResponseDTO;
 import com.example.gamblingservice.service.GamblingService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,23 +20,14 @@ import javax.validation.Valid;
  * @version 0.0.1
  */
 @RestController
-@RequestMapping("/api/v1/gambling")
+@RequestMapping("/gambling")
+@RequiredArgsConstructor
 public class GamblingController {
 
     /**
      * The GamblingService for working with gambling.
      */
     private final GamblingService gamblingService;
-
-    /**
-     * Initial constructor.
-     *
-     * @param gamblingService the gambling service
-     */
-    @Autowired
-    public GamblingController(GamblingService gamblingService) {
-        this.gamblingService = gamblingService;
-    }
 
     /**
      * Method that creates bet.

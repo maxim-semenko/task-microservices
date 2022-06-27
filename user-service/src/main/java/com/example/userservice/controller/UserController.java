@@ -3,6 +3,8 @@ package com.example.userservice.controller;
 import com.example.userservice.dto.CreateUserRequestDTO;
 import com.example.userservice.entity.User;
 import com.example.userservice.service.UserService;
+import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,22 +23,14 @@ import javax.validation.Valid;
  * @version 0.0.1
  */
 @RestController
-@RequestMapping("/api/v1/users")
+@RequestMapping("/users")
+@RequiredArgsConstructor
 public class UserController {
 
     /**
      * The UserService for working with user entity {@link User}.
      */
     private final UserService userService;
-
-    /**
-     * Initial constructor.
-     *
-     * @param userService the user service {@link UserService}
-     */
-    public UserController(UserService userService) {
-        this.userService = userService;
-    }
 
     /**
      * Method that finds user by needed their id.

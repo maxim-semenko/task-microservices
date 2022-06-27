@@ -7,6 +7,8 @@ import com.example.userservice.entity.User;
 import com.example.userservice.exception.UserNotFoundException;
 import com.example.userservice.repository.UserRepository;
 import com.example.userservice.service.UserService;
+import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,23 +23,11 @@ import java.util.UUID;
  * @version 0.0.1
  */
 @Service
+@RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final RabbitTemplate rabbitTemplate;
-
-    /**
-     * Initial constructor.
-     *
-     * @param userRepository the user repository {@link UserRepository}
-     * @param rabbitTemplate the RabbitMQ
-     */
-    @Autowired
-    public UserServiceImpl(UserRepository userRepository,
-                           RabbitTemplate rabbitTemplate) {
-        this.userRepository = userRepository;
-        this.rabbitTemplate = rabbitTemplate;
-    }
 
     @Override
     public User findById(Long id) {

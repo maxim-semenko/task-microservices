@@ -10,8 +10,9 @@ import com.example.invoiceservice.exception.ResourseNotFoundException;
 import com.example.invoiceservice.feignclient.UserFeignClient;
 import com.example.invoiceservice.repository.InvoiceRepository;
 import com.example.invoiceservice.service.InvoiceService;
+import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -25,24 +26,12 @@ import java.util.UUID;
  * @version 0.0.1
  */
 @Service
+@RequiredArgsConstructor
 @Slf4j
 public class InvoiceServiceImpl implements InvoiceService {
 
     private final InvoiceRepository invoiceRepository;
     private final UserFeignClient userFeignClient;
-
-    /**
-     * Initial constructor.
-     *
-     * @param invoiceRepository the invoice repository {@link InvoiceRepository}
-     * @param userFeignClient   the client to communicate with UserService {@link UserFeignClient}
-     */
-    @Autowired
-    public InvoiceServiceImpl(InvoiceRepository invoiceRepository,
-                              UserFeignClient userFeignClient) {
-        this.invoiceRepository = invoiceRepository;
-        this.userFeignClient = userFeignClient;
-    }
 
     /**
      * Method that gets user's balance by their id.

@@ -19,45 +19,45 @@ public class MessagingConfig {
     public static final String EXCHANGE = "java_exchange";
     public static final String KEY = "java_key";
 
-    @Bean
-    public Queue queue() {
-        return new Queue(QUEUE);
-    }
-
-    @Bean
-    public TopicExchange exchange() {
-        return new TopicExchange(EXCHANGE);
-    }
-
-    @Bean
-    public Binding binding(Queue queue, TopicExchange exchange) {
-        return BindingBuilder
-                .bind(queue)
-                .to(exchange)
-                .with(KEY);
-    }
-
-    @Bean
-    public MessageConverter converter() {
-        return new Jackson2JsonMessageConverter();
-    }
-
-    @Bean
-    public ConnectionFactory factory() {
-        CachingConnectionFactory connectionFactory = new CachingConnectionFactory();
-        connectionFactory.setHost("rabbitmq");
-        connectionFactory.setPort(5672);
-        connectionFactory.setUsername("user");
-        connectionFactory.setPassword("password");
-
-        return connectionFactory;
-    }
-
-    @Bean
-    public RabbitTemplate template(ConnectionFactory connectionFactory) {
-        final RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory);
-        rabbitTemplate.setMessageConverter(converter());
-        return rabbitTemplate;
-    }
+//    @Bean
+//    public Queue queue() {
+//        return new Queue(QUEUE);
+//    }
+//
+//    @Bean
+//    public TopicExchange exchange() {
+//        return new TopicExchange(EXCHANGE);
+//    }
+//
+//    @Bean
+//    public Binding binding(Queue queue, TopicExchange exchange) {
+//        return BindingBuilder
+//                .bind(queue)
+//                .to(exchange)
+//                .with(KEY);
+//    }
+//
+//    @Bean
+//    public MessageConverter converter() {
+//        return new Jackson2JsonMessageConverter();
+//    }
+//
+//    @Bean
+//    public ConnectionFactory factory() {
+//        CachingConnectionFactory connectionFactory = new CachingConnectionFactory();
+//        connectionFactory.setHost("rabbitmq");
+//        connectionFactory.setPort(5672);
+//        connectionFactory.setUsername("user");
+//        connectionFactory.setPassword("password");
+//
+//        return connectionFactory;
+//    }
+//
+//    @Bean
+//    public RabbitTemplate template(ConnectionFactory connectionFactory) {
+//        final RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory);
+//        rabbitTemplate.setMessageConverter(converter());
+//        return rabbitTemplate;
+//    }
 
 }

@@ -6,8 +6,9 @@ import com.example.invoiceservice.exception.ResourseNotFoundException;
 import com.example.invoiceservice.feignclient.UserFeignClient;
 import com.example.invoiceservice.repository.InvoiceRepository;
 import com.example.invoiceservice.service.ReportService;
+import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -20,20 +21,12 @@ import java.util.Map;
 
 @Service
 @Slf4j
+@RequiredArgsConstructor
 public class ReportServiceImpl implements ReportService {
 
     private final PdfGeneratorServiceImpl pdfGeneratorService;
     private final UserFeignClient userFeignClient;
     private final InvoiceRepository invoiceRepository;
-
-    @Autowired
-    public ReportServiceImpl(PdfGeneratorServiceImpl pdfGeneratorService,
-                             UserFeignClient userFeignClient,
-                             InvoiceRepository invoiceRepository) {
-        this.pdfGeneratorService = pdfGeneratorService;
-        this.userFeignClient = userFeignClient;
-        this.invoiceRepository = invoiceRepository;
-    }
 
     /**
      * Method that return bet history report by userId.

@@ -6,9 +6,9 @@ import com.example.gamblingservice.dto.CreatedBetResponseDTO;
 import com.example.gamblingservice.exception.ResourseNotFoundException;
 import com.example.gamblingservice.feignclient.UserFeignClient;
 import com.example.gamblingservice.service.GamblingService;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -21,18 +21,12 @@ import java.util.UUID;
  * @version 0.0.1
  */
 @Service
+@RequiredArgsConstructor
 @Slf4j
 public class GamblingServiceImpl implements GamblingService {
 
     private final RabbitTemplate rabbitTemplate;
     private final UserFeignClient userFeignClient;
-
-    @Autowired
-    public GamblingServiceImpl(RabbitTemplate rabbitTemplate,
-                               UserFeignClient userFeignClient) {
-        this.rabbitTemplate = rabbitTemplate;
-        this.userFeignClient = userFeignClient;
-    }
 
     /**
      * Method that creates bet.

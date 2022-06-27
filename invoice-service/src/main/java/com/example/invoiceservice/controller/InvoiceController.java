@@ -4,6 +4,7 @@ import com.example.invoiceservice.dto.UserBalanceResponseDTO;
 import com.example.invoiceservice.dto.WithdrawMoneyRequestDTO;
 import com.example.invoiceservice.entity.Invoice;
 import com.example.invoiceservice.service.InvoiceService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,20 +22,11 @@ import org.springframework.web.bind.annotation.RestController;
  * @version 0.0.1
  */
 @RestController
-@RequestMapping("/api/v1/invoices")
+@RequestMapping("/invoices")
+@RequiredArgsConstructor
 public class InvoiceController {
 
     private final InvoiceService invoiceService;
-
-    /**
-     * The InvoiceService for working with invoice entity {@link Invoice}.
-     *
-     * @param invoiceService the invoice service {@link InvoiceService}
-     */
-    @Autowired
-    public InvoiceController(InvoiceService invoiceService) {
-        this.invoiceService = invoiceService;
-    }
 
     /**
      * Method that returns user's balance.
