@@ -1,4 +1,4 @@
-package com.example.userservice.config;
+package com.example.keycloakservice.config;
 
 import org.keycloak.adapters.KeycloakConfigResolver;
 import org.keycloak.adapters.springboot.KeycloakSpringBootConfigResolver;

@@ -4,8 +4,10 @@ import com.example.gamblingservice.dto.CreateBetRequestDTO;
 import com.example.gamblingservice.dto.CreatedBetResponseDTO;
 import com.example.gamblingservice.service.GamblingService;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,6 +38,7 @@ public class GamblingController {
      * @return the response entity {@link ResponseEntity<CreatedBetResponseDTO>}
      */
     @PostMapping("/")
+    @PreAuthorize("isAuthenticated()")
     public ResponseEntity<CreatedBetResponseDTO> createBet(@RequestBody @Valid CreateBetRequestDTO requestDTO) {
         return new ResponseEntity<>(gamblingService.createBet(requestDTO), HttpStatus.CREATED);
     }

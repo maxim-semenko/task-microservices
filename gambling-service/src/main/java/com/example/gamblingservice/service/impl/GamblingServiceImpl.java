@@ -7,6 +7,7 @@ import com.example.gamblingservice.exception.ResourseNotFoundException;
 import com.example.gamblingservice.feignclient.UserFeignClient;
 import com.example.gamblingservice.service.GamblingService;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Service;
