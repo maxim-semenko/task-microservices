@@ -1,5 +1,6 @@
 package com.example.userservice.dto;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -11,6 +12,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @ToString
+@Builder
 public class RegisterBetRequestDTO {
     @NotNull
     private UUID betUUID;
@@ -24,4 +26,5 @@ public class RegisterBetRequestDTO {
     private Date betTimeStamp;
     @NotNull
     private String betType;
+
 }

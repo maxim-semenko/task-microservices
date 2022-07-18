@@ -1,5 +1,6 @@
 package com.example.userservice.dto;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,6 +15,7 @@ import javax.validation.constraints.Size;
  */
 @Getter
 @Setter
+@Builder
 public class CreateUserRequestDTO {
     @NotBlank(message = "Title must be not blank!")
     @Size(min = 2, max = 50, message = "Title size must be between 2 and 50!")
