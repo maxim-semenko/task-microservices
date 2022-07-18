@@ -40,6 +40,7 @@ public class GamblingServiceImpl implements GamblingService {
         try {
             userFeignClient.getUserById(requestDTO.getUserId());
         } catch (Exception e) {
+            log.error(e.getMessage());
             throw new ResourseNotFoundException("User was not found!");
         }
 

@@ -50,7 +50,7 @@ services:
     volumes:
       - 'pgadmin:/var/lib/pgadmin'
     ports:
-      - '5050:80'
+      - '5040:80'
     networks:
       - 'postgres'
     restart: 'unless-stopped'
@@ -79,8 +79,9 @@ services:
       DB_PASSWORD: password
       KEYCLOAK_ADMIN: admin
       KEYCLOAK_ADMIN_PASSWORD: admin
+      KC_HTTP_PORT: 8090
     ports:
-      - '8090:8080'
+      - '8090:8090'
     depends_on:
       - kc_postgres
     command: start-dev

@@ -4,10 +4,10 @@ import com.example.invoiceservice.dto.UserBalanceResponseDTO;
 import com.example.invoiceservice.dto.WithdrawMoneyRequestDTO;
 import com.example.invoiceservice.entity.Invoice;
 import com.example.invoiceservice.service.InvoiceService;
-import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,6 +35,7 @@ public class InvoiceController {
      * @return the response entity {@link ResponseEntity<UserBalanceResponseDTO>}
      */
     @GetMapping("/status/{userId}")
+    @PreAuthorize("hasAnyRole('role-get-balance', 'role-full-access')")
     public ResponseEntity<UserBalanceResponseDTO> getUserBalanceByUserId(@PathVariable Long userId) {
         return new ResponseEntity<>(invoiceService.getUserBalanceByUserId(userId), HttpStatus.OK);
     }
@@ -45,6 +46,7 @@ public class InvoiceController {
      * @return the response entity
      */
     @PostMapping("/withdraw")
+    @PreAuthorize("hasAnyRole('role-withdraw')")
     public ResponseEntity<Invoice> withdrawMoney(@RequestBody WithdrawMoneyRequestDTO requestDTO) {
         return new ResponseEntity<>(invoiceService.withdrawMoney(requestDTO), HttpStatus.CREATED);
     }

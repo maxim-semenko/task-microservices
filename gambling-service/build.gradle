@@ -21,6 +21,9 @@ repositories {
 }
 
 dependencies {
+    // https://mvnrepository.com/artifact/javax.ws.rs/javax.ws.rs-api
+    implementation group: 'javax.ws.rs', name: 'javax.ws.rs-api', version: '2.0'
+
     implementation 'org.springframework.boot:spring-boot-starter-validation'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client:3.1.3'

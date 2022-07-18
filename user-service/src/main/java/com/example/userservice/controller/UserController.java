@@ -4,6 +4,10 @@ import com.example.userservice.dto.CreateUserRequestDTO;
 import com.example.userservice.entity.User;
 import com.example.userservice.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.keycloak.admin.client.Keycloak;
+import org.keycloak.admin.client.resource.UsersResource;
+import org.keycloak.representations.idm.UserRepresentation;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -14,9 +18,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
-import java.util.List;
+import javax.ws.rs.core.Response;
+import java.util.Collections;
 
 /**
  * The User REST-controller.
@@ -29,10 +35,36 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserController {
 
+    @PostMapping("/register")
+    public ResponseEntity<Object> createUser() {
+        UserRepresentation user = new UserRepresentation();
+        user.setEmail("yourniceemail@mail.com");
+        user.setUsername("unique_username");
+        user.setGroups(Collections.singletonList("user"));
+        UsersResource users = keycloak.realm(realm).users();
+
+        Response response = users.create(user);
+
+        if(response.getStatus() != 201) {
+            throw new ResponseStatusException(
+                    HttpStatus.valueOf(response.getStatus()),
+                    response.readEntity(String.class));
+        }
+        String[] parts = response.getLocation().toString().split("/");
+        String userId = parts[parts.length - 1];
+
+        // save user into database
+        return ResponseEntity.ok().build();
+    }
+
     /**
      * The UserService for working with user entity {@link User}.
      */
     private final UserService userService;
+    private final Keycloak keycloak;
+
+    @Value("${keycloak.realm}")
+    private String realm;
 
     /**
      * Method that finds user by needed their id.
@@ -41,7 +73,7 @@ public class UserController {
      * @return the response entity {@link ResponseEntity<User>}
      */
     @GetMapping("/{id}")
-    @PreAuthorize("hasRole('role-get-user') and #id == authentication.principal.id or (hasRole('role-full-access'))")
+    @PreAuthorize("hasAnyRole('role-get-user', 'role-full-access')")
     public ResponseEntity<User> findById(@PathVariable Long id) {
         return new ResponseEntity<>(userService.findById(id), HttpStatus.OK);
     }
@@ -65,8 +97,7 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    @PreAuthorize("(hasRole('role-update-user') and #id == authentication.principal.id) " +
-            "or (hasRole('role-full-access'))")
+    @PreAuthorize("hasAnyRole('role-update-user', 'role-full-access')")
     public ResponseEntity<User> update(@PathVariable Long id) {
         return new ResponseEntity<>(null, HttpStatus.OK);
     }

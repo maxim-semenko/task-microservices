@@ -2,6 +2,7 @@ package com.example.invoiceservice.service.impl;
 
 import com.example.invoiceservice.dto.CreatedBetResponseDTO;
 import com.example.invoiceservice.dto.UserBalanceResponseDTO;
+import com.example.invoiceservice.dto.UserResponseDTO;
 import com.example.invoiceservice.dto.WithdrawMoneyRequestDTO;
 import com.example.invoiceservice.entity.BetTypeEnum;
 import com.example.invoiceservice.entity.Invoice;
@@ -13,6 +14,7 @@ import com.example.invoiceservice.service.InvoiceService;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -78,8 +80,10 @@ public class InvoiceServiceImpl implements InvoiceService {
         try {
             userFeignClient.getUserById(userId);
         } catch (Exception e) {
+            log.error("ERROR: " + e.getMessage());
             throw new ResourseNotFoundException("User was not found!");
         }
+
         Double balance = invoiceRepository.getBalanceByUserId(userId);
         if (balance < 0) {
             throw new BalanceHistoryException("Your balance is lass then zero!");
